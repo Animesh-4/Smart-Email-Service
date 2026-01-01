@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const Email = require('./models/Email');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -17,7 +19,26 @@ mongoose.connect(MONGO_URI)
 
 app.get('/',(req,res)=> {
     res.send('Backend server is running!');
-})
+});
+
+app.get('/test-db', async (req, res) => {
+  try {
+    const testEmail = new Email({
+      remoteId: `test_${Date.now()}`,
+      from: "boss@bigtech.com",
+      subject: "Urgent: Project Update",
+      snippet: "Please finish the code by Friday.",
+      date: new Date(),
+      category: "Work",
+      aiConfidence: 85
+    });
+    await testEmail.save();
+
+    res.json({ message: "Saved a test email!", data: testEmail });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
