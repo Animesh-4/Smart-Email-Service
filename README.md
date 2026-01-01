@@ -45,7 +45,7 @@ A full-stack AI application that intelligently sorts emails into **Work**, **Per
 
 ## 📸 Demo Workflow
 
-1.  Click **"Simulate Incoming Email"** to generate a random email.
+1.  Click **"+ New Email"** to generate a random email.
 2.  Watch the AI assign a category (e.g., "Personal").
 3.  If incorrect, use the dropdown to change it to "Work".
 4.  Observe the **"AI Accuracy"** score update in real-time.
