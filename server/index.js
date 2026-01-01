@@ -105,6 +105,39 @@ app.patch('/api/emails/:id', async (req, res) => {
   }
 });
 
+app.delete('/api/emails/:id', async (req, res) => {
+  try {
+    await Email.findByIdAndDelete(req.params.id);
+    res.json({ message: "Email deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete" });
+  }
+});
+
+// 2. TOGGLE STAR (Important)
+app.patch('/api/emails/:id/star', async (req, res) => {
+  try {
+    const email = await Email.findById(req.params.id);
+    email.isStarred = !email.isStarred; // Flip true/false
+    await email.save();
+    res.json(email);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to toggle star" });
+  }
+});
+
+// 3. TOGGLE READ STATUS
+app.patch('/api/emails/:id/read', async (req, res) => {
+  try {
+    const email = await Email.findById(req.params.id);
+    email.isRead = !email.isRead; // Flip true/false
+    await email.save();
+    res.json(email);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update read status" });
+  }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

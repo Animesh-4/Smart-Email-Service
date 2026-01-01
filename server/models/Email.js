@@ -34,6 +34,7 @@ const emailSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    isStarred: { type: Boolean, default: false },
     isCorrected: {
         type: Boolean,
         default: false
