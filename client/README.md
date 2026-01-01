@@ -1,16 +1,51 @@
-# React + Vite
+# 📧 InboxAI - Smart Email Categorization Engine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack AI application that intelligently sorts emails into **Work**, **Personal**, and **Promotions** categories using Large Language Models (LLM). It features a "Human-in-the-Loop" workflow where users can correct AI predictions to track and improve system accuracy.
 
-Currently, two official plugins are available:
+![Project Screenshot](./screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Key Features
 
-## React Compiler
+* **🤖 AI Classification:** Automatically tags incoming emails based on context (e.g., "Jira" -> Work, "Sale" -> Promotions).
+* **📊 Live Analytics Dashboard:** Real-time tracking of total volume and AI accuracy rates.
+* **🔄 Interactive Corrections:** Users can override AI tags via a dropdown, which updates the database and recalculates accuracy scores instantly.
+* **🎨 Advanced UI:** Built with Material UI, featuring category filtering, avatars, and responsive design.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+* **Frontend:** React.js (Vite), Material UI (MUI)
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB Atlas (Cloud)
+* **AI Engine:** Google Gemini Pro (via Generative AI SDK)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ⚙️ Installation & Setup
+
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/YOUR_USERNAME/smart-email-service.git](https://github.com/YOUR_USERNAME/smart-email-service.git)
+    cd smart-email-service
+    ```
+
+2.  **Setup Backend**
+    ```bash
+    cd server
+    npm install
+    # Create a .env file with:
+    # MONGODB_URI=your_mongodb_connection_string
+    # GEMINI_API_KEY=your_google_api_key
+    node index.js
+    ```
+
+3.  **Setup Frontend**
+    ```bash
+    cd client
+    npm install
+    npm run dev
+    ```
+
+## 📸 Demo Workflow
+
+1.  Click **"Simulate Incoming Email"** to generate a random email.
+2.  Watch the AI assign a category (e.g., "Personal").
+3.  If incorrect, use the dropdown to change it to "Work".
+4.  Observe the **"AI Accuracy"** score update in real-time.

@@ -1,29 +1,24 @@
-// server/aiService.js (MOCK MODE)
-
 async function classifyEmail(subject, body) {
-  console.log("⚠️  USING MOCK AI: Real Gemini API is currently bypassed.");
-  
-  // Simulate a short delay like a real AI server
-  await new Promise(resolve => setTimeout(resolve, 800));
+  // Simulate delay
+  await new Promise(resolve => setTimeout(resolve, 500));
 
   const text = (subject + " " + body).toLowerCase();
   
-  // Simple keyword logic to simulate "intelligence"
   let category = "Personal";
   let confidence = 75;
 
-  if (text.includes("meeting") || text.includes("sprint") || text.includes("deadline") || text.includes("project")) {
+  // 1. Logic for WORK
+  if (text.includes("jira") || text.includes("bug") || text.includes("meeting") || text.includes("project") || text.includes("deadline")) {
     category = "Work";
     confidence = 92;
-  } else if (text.includes("sale") || text.includes("discount") || text.includes("off") || text.includes("offer")) {
+  } 
+  // 2. Logic for PROMOTIONS
+  else if (text.includes("sale") || text.includes("pizza") || text.includes("offer") || text.includes("discount") || text.includes("free")) {
     category = "Promotions";
     confidence = 88;
   }
 
-  return {
-    category,
-    confidence
-  };
+  return { category, confidence };
 }
 
 module.exports = { classifyEmail };
